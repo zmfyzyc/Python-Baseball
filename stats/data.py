@@ -15,9 +15,9 @@ for game_file in game_files:
 games = pd.concat(game_frames)
 games.loc[games['multi5'] == '??', 'multi5'] = ''
 
-identifiers = games['multi2'].str.extract(r'(.LS\d{4}\d{5})')
+identifiers = games['multi2'].str.extract(r'(.LS(\d{4})\d{5})')
 identifiers = identifiers.fillna(method='ffill')
-identifiers.colums = ['game_id', 'year']
+identifiers.columns = ['game_id', 'year']
 games = pd.concat([games, identifiers], axis=1, sort=False)
 games = games.fillna(' ')
 
